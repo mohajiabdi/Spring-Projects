@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+<!--  <style>-->
+<!--    body {-->
+<!--        background-color: black;-->
+<!--        color: white;-->
+<!--    }-->
+<!--  </style>-->
+  <title>Register New Customer</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/home">Customer MS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+        <a class="nav-link" href="/register">Register</a>
+        <a class="nav-link" href="/all">View All</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+<!--<div class="container-fluid">-->
+<!--  <form th:action="@{/save}" method="post" class="mt-5">-->
+<!--    <div class="mb-3">-->
+<!--      <label  class="form-label">Name:</label>-->
+<!--      <input type="text" class="form-control"  name="name">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label  class="form-label">Address:</label>-->
+<!--      <input type="text" class="form-control"  name="address">-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-primary">Register</button>-->
+<!--  </form>-->
+<!--</div>-->
+
+<div class="container-fluid">
+  <form th:action="${customer != null} ? @{/update/{id}(id=${customer.id})} : @{/save}" method="post" class="mt-5">
+    <div class="mb-3">
+<!--      <label class="form-label">Id:</label>-->
+    <input type="text" th:if="${customer != null}" th:value="${customer.id}" name="id" readonly>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Name:</label>
+      <input type="text" class="form-control" th:value="${customer != null} ? ${customer.name} : ''" name="name">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Address:</label>
+      <input type="text" class="form-control" th:value="${customer != null} ? ${customer.address} : ''" name="address">
+    </div>
+    <button type="submit" class="btn btn-primary" th:text="${customer != null} ? 'Update' : 'Register'"></button>
+  </form>
+</div>
+
+
+<footer>&copy;Mohaji Customer MS 2025</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>
