@@ -9,16 +9,16 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "students")
+@Table(name = "teachers")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Student {
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_id")
-    private Long studentId;
+    @Column(name = "teacher_id")
+    private Long teacherId;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -26,15 +26,17 @@ public class Student {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "date_of_birth", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+    @Column(nullable = false, unique = true)
+    private String email;
 
-    @Column(nullable = false)
-    private String gender;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-    @Column(name = "enrollment_date")
+    @Column(name = "hire_date")
     @Temporal(TemporalType.DATE)
     @CreationTimestamp
-    private Date enrollmentDate = new Date();
+    private Date hireDate = new Date();
+
+    @Column(columnDefinition = "TEXT")
+    private String qualifications;
 }
