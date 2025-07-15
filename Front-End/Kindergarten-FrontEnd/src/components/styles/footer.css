@@ -1,0 +1,98 @@
+/* Footer.css */
+
+.footer-container {
+  background-color: #39e079;
+  padding-top: 2rem; /* py-8 */
+  padding-bottom: 2rem; /* py-8 */
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+  color: white;
+  font-family: "Inter", sans-serif; /* font-inter */
+  border-top-left-radius: 0.5rem; /* rounded-t-lg */
+  border-top-right-radius: 0.5rem; /* rounded-t-lg */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+}
+
+.footer-content {
+  max-width: 80rem; /* max-w-7xl */
+  margin-left: auto; /* mx-auto */
+  margin-right: auto; /* mx-auto */
+  display: flex;
+  flex-direction: column; /* flex-col */
+  justify-content: space-between; /* justify-between */
+  align-items: center; /* items-center */
+  text-align: center; /* text-center */
+  row-gap: 1.5rem; /* space-y-6 */
+}
+
+@media (min-width: 768px) {
+  /* md breakpoint */
+  .footer-content {
+    flex-direction: row; /* md:flex-row */
+    text-align: left; /* md:text-left */
+    row-gap: 0; /* md:space-y-0 */
+  }
+  .footer-container {
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem; /* sm:px-6 */
+  }
+}
+
+@media (min-width: 1024px) {
+  /* lg breakpoint */
+  .footer-container {
+    padding-left: 2rem; /* lg:px-8 */
+    padding-right: 2rem; /* lg:px-8 */
+  }
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column; /* flex-col */
+  row-gap: 0.5rem; /* space-y-2 */
+}
+
+@media (min-width: 640px) {
+  /* sm breakpoint */
+  .footer-links {
+    flex-direction: row; /* sm:flex-row */
+    row-gap: 0; /* sm:space-y-0 */
+    column-gap: 2rem; /* sm:space-x-8 */
+  }
+}
+
+.footer-link {
+  color: white;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  text-decoration: none;
+  transition-property: text-decoration, color; /* transition-colors duration-200 */
+  transition-duration: 200ms;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  column-gap: 1.5rem; /* space-x-6 */
+}
+
+/* Specific styling for SVG icons within social links */
+.social-icon-svg {
+  color: white; /* text-white */
+  transition-property: color; /* transition-colors duration-200 */
+  transition-duration: 200ms;
+}
+
+.social-icon-svg:hover {
+  color: #d1d5db; /* hover:text-gray-300 */
+}
+
+.copyright {
+  font-size: 0.875rem; /* text-sm */
+  color: white;
+  opacity: 0.9; /* opacity-90 */
+}

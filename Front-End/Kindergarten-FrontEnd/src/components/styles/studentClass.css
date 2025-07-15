@@ -1,0 +1,131 @@
+:root {
+  --primary-color: #39e079;
+  --text-color: #222;
+  --bg-color: #fff;
+  --border-color: #ccc;
+}
+
+.student-class-container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 30px auto;
+  font-family: sans-serif;
+}
+
+.student-class-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.student-class-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.student-class-form select {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.student-class-form button {
+  grid-column: span 2;
+  padding: 0.75rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.student-class-form button:hover {
+  background-color: #2dc76b;
+}
+
+.student-class-table-wrapper {
+  overflow-x: auto;
+}
+
+.student-class-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.student-class-table th,
+.student-class-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid var(--border-color);
+}
+
+.student-class-table thead {
+  background-color: #f1f1f1;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 0.4rem 0.8rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.edit-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.delete-btn {
+  background-color: #e03f3f;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #2dc76b;
+}
+
+.delete-btn:hover {
+  background-color: #c43030;
+}
+
+@media (max-width: 768px) {
+  .student-class-form {
+    grid-template-columns: 1fr;
+  }
+
+  .student-class-form button {
+    grid-column: span 1;
+  }
+
+  .student-class-table th,
+  .student-class-table td {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-class-title {
+    font-size: 1.2rem;
+  }
+
+  .student-class-form select {
+    font-size: 0.9rem;
+  }
+
+  .student-class-table th,
+  .student-class-table td {
+    padding: 0.5rem;
+  }
+}

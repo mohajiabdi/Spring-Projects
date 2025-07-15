@@ -1,10 +1,12 @@
+// src/pages/Student.jsx
 import React, { useEffect, useState } from "react";
 import {
   getAllStudents,
   createStudent,
   updateStudent,
   deleteStudent,
-} from "../services/studentService";
+} from "../../services/studentService.js";
+import "../styles/student.css";
 
 const Student = () => {
   const [students, setStudents] = useState([]);
@@ -62,12 +64,11 @@ const Student = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-bold mb-4">Student Management</h2>
+    <div className="student-container">
+      <h2 className="student-title">Student Management</h2>
 
-      <form className="grid grid-cols-2 gap-4 mb-6" onSubmit={handleSubmit}>
+      <form className="student-form" onSubmit={handleSubmit}>
         <input
-          className="border p-2"
           type="text"
           name="firstName"
           placeholder="First Name"
@@ -76,7 +77,6 @@ const Student = () => {
           required
         />
         <input
-          className="border p-2"
           type="text"
           name="lastName"
           placeholder="Last Name"
@@ -85,7 +85,6 @@ const Student = () => {
           required
         />
         <input
-          className="border p-2"
           type="date"
           name="dateOfBirth"
           value={form.dateOfBirth}
@@ -93,7 +92,6 @@ const Student = () => {
           required
         />
         <select
-          className="border p-2"
           name="gender"
           value={form.gender}
           onChange={handleChange}
@@ -103,46 +101,45 @@ const Student = () => {
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
-        <button type="submit" className="bg-blue-500 text-white p-2 col-span-2">
+        <button type="submit">
           {editingId ? "Update Student" : "Add Student"}
         </button>
       </form>
 
-      <table className="w-full table-auto border-collapse border border-gray-300">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border p-2">First Name</th>
-            <th className="border p-2">Last Name</th>
-            <th className="border p-2">DOB</th>
-            <th className="border p-2">Gender</th>
-            <th className="border p-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((s) => (
-            <tr key={s.studentId}>
-              <td className="border p-2">{s.firstName}</td>
-              <td className="border p-2">{s.lastName}</td>
-              <td className="border p-2">{s.dateOfBirth}</td>
-              <td className="border p-2">{s.gender}</td>
-              <td className="border p-2 space-x-2">
-                <button
-                  className="bg-green-500 text-white px-2 py-1"
-                  onClick={() => handleEdit(s)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="bg-red-500 text-white px-2 py-1"
-                  onClick={() => handleDelete(s.studentId)}
-                >
-                  Delete
-                </button>
-              </td>
+      <div className="student-table-wrapper">
+        <table className="student-table">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {students.map((s) => (
+              <tr key={s.studentId}>
+                <td>{s.firstName}</td>
+                <td>{s.lastName}</td>
+                <td>{s.dateOfBirth}</td>
+                <td>{s.gender}</td>
+                <td>
+                  <button className="edit-btn" onClick={() => handleEdit(s)}>
+                    Edit
+                  </button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDelete(s.studentId)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

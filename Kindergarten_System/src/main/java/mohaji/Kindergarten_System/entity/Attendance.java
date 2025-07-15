@@ -11,6 +11,8 @@ import java.util.Date;
 @Entity
 @Table(name = "attendances")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Attendance {
