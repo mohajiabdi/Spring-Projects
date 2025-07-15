@@ -13,8 +13,8 @@
 }
 
 .hero-section {
-  background: url("https://montessori-academy.org/wp-content/uploads/2020/08/hero_admissions_infants-1536x558.jpg")
-    center/cover no-repeat;
+  background: url("../../assets/hero.jpg") center/cover no-repeat;
+
   height: 400px;
   display: flex;
   align-items: center;
