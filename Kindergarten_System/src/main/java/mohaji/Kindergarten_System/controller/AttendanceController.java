@@ -4,8 +4,10 @@ package mohaji.Kindergarten_System.controller;
 
 import mohaji.Kindergarten_System.dto.AttendanceRequest;
 import mohaji.Kindergarten_System.entity.Attendance;
+import mohaji.Kindergarten_System.entity.SchoolClass;
 import mohaji.Kindergarten_System.entity.Student;
 import mohaji.Kindergarten_System.repository.AttendanceRepository;
+import mohaji.Kindergarten_System.repository.SchoolClassRepository;
 import mohaji.Kindergarten_System.repository.StudentRepository;
 import mohaji.Kindergarten_System.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,49 +24,28 @@ import java.util.stream.Collectors;
 public class AttendanceController {
 
     @Autowired
-    private AttendanceRepository attendanceRepo;
+    private AttendanceRepository attendanceRepository;
 
     @Autowired
-    private StudentRepository studentRepo;
+    private StudentRepository studentRepository;
+
+    @Autowired
+    private SchoolClassRepository schoolClassRepository;
 
     @GetMapping
     public List<Attendance> getAll() {
-        return attendanceRepo.findAll();
+        return attendanceRepository.findAll();
     }
+
+    @Autowired
+    private AttendanceService attendanceService;
 
     @PostMapping
     public ResponseEntity<Attendance> create(@RequestBody AttendanceRequest request) {
-        Student student = studentRepo.findById(request.getStudentId())
-                .orElseThrow(() -> new RuntimeException("Student not found"));
-
-        Attendance attendance = new Attendance();
-        attendance.setStudent(student);
-       // attendance.setAttendanceDate(request.getDate());
-        attendance.setStatus(request.getStatus());
-
-        return ResponseEntity.ok(attendanceRepo.save(attendance));
+        Attendance saved = attendanceService.createAttendance(request);
+        return ResponseEntity.ok(saved);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Attendance> update(@PathVariable Long id, @RequestBody AttendanceRequest request) {
-        return attendanceRepo.findById(id).map(existing -> {
-            Student student = studentRepo.findById(request.getStudentId())
-                    .orElseThrow(() -> new RuntimeException("Student not found"));
 
-            existing.setStudent(student);
-           // existing.setDate(request.getDate());
-            existing.setStatus(request.getStatus());
 
-            return ResponseEntity.ok(attendanceRepo.save(existing));
-        }).orElse(ResponseEntity.notFound().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        if (!attendanceRepo.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        attendanceRepo.deleteById(id);
-        return ResponseEntity.ok().build();
-    }
 }

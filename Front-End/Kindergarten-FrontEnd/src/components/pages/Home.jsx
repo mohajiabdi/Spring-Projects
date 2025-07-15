@@ -36,7 +36,7 @@ const Home = () => {
     thirtyDaysAgo.setDate(now.getDate() - 30);
 
     const recentAttendances = attendances.data.filter((a) => {
-      const attDate = new Date(a.date);
+      const attDate = new Date(a.attendanceDate);
       return attDate >= thirtyDaysAgo && attDate <= now;
     });
 

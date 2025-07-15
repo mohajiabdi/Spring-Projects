@@ -1,47 +1,52 @@
 package mohaji.Kindergarten_System.service;
 
-
-
+import java.util.List;
+import mohaji.Kindergarten_System.dto.AttendanceRequest;
 import mohaji.Kindergarten_System.entity.Attendance;
-import mohaji.Kindergarten_System.exception.StudentNotFoundException;
+import mohaji.Kindergarten_System.entity.SchoolClass;
+import mohaji.Kindergarten_System.entity.Student;
 import mohaji.Kindergarten_System.repository.AttendanceRepository;
+import mohaji.Kindergarten_System.repository.SchoolClassRepository;
+import mohaji.Kindergarten_System.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class AttendanceService {
 
     @Autowired
-    private AttendanceRepository repository;
+    private AttendanceRepository attendanceRepository;
 
-    public Attendance recordAttendance(Attendance attendance) {
-        return repository.save(attendance);
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @Autowired
+    private SchoolClassRepository classRepository;
+
+    public List<Attendance> getAllAttendances() {
+        return attendanceRepository.findAll();
     }
 
-    public Attendance getAttendanceById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new StudentNotFoundException(id));
+    public Attendance createAttendance(AttendanceRequest request) {
+        Student student = studentRepository.findById(request.getStudentId())
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+
+        SchoolClass schoolClass = classRepository.findById(request.getClassId())
+                .orElseThrow(() -> new RuntimeException("Class not found"));
+
+        Attendance attendance = new Attendance();
+        attendance.setStudent(student);
+        attendance.setSchoolClass(schoolClass);
+        attendance.setStatus(request.getStatus());
+        attendance.setRemarks(request.getRemarks());
+        attendance.setAttendanceDate(new Date());
+
+        return attendanceRepository.save(attendance);
     }
 
-    public List<Attendance> getAllAttendance() {
-        return repository.findAll();
-    }
-
-    public Attendance updateAttendance(Long id, Attendance updated) {
-        Attendance a = getAttendanceById(id);
-        a.setStudent(updated.getStudent());
-        a.setAttendanceDate(updated.getAttendanceDate());
-        a.setStatus(updated.getStatus());
-        a.setRemarks(updated.getRemarks());
-        return repository.save(a);
-    }
-
-    public void deleteAttendance(Long id) {
-        if (!repository.existsById(id)) {
-            throw new StudentNotFoundException(id);
-        }
-        repository.deleteById(id);
-    }
+    // You can add update and delete logic as needed.
 }
+
