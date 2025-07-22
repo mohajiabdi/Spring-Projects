@@ -1,0 +1,40 @@
+.register-form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background: #f9fff7;
+  border-radius: 10px;
+}
+
+.register-form h2 {
+  color: #39e079;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-form input,
+.register-form select {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+.link {
+  color: #39e079;
+  text-decoration: none;
+}
+.register-link {
+  text-align: center;
+  margin-top: 15px;
+}
+.register-form button {
+  width: 100%;
+  padding: 10px;
+  background: #39e079;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

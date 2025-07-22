@@ -1,16 +1,12 @@
 package mohaji.Kindergarten_System.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "attendances")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Attendance {
 
     @Id
@@ -24,7 +20,7 @@ public class Attendance {
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
-    private SchoolClass schoolClass; // 👈 Added class reference
+    private SchoolClass schoolClass;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "attendance_date", nullable = false)
@@ -32,7 +28,73 @@ public class Attendance {
     private Date attendanceDate;
 
     @Column(nullable = false)
-    private String status; // PRESENT, ABSENT, etc.
+    private String status;
 
     private String remarks;
+
+    // 👉 Constructors
+
+    public Attendance() {
+    }
+
+    public Attendance(Long attendanceId, Student student, SchoolClass schoolClass, Date attendanceDate, String status, String remarks) {
+        this.attendanceId = attendanceId;
+        this.student = student;
+        this.schoolClass = schoolClass;
+        this.attendanceDate = attendanceDate;
+        this.status = status;
+        this.remarks = remarks;
+    }
+
+    // 👉 Getters and Setters
+
+    public Long getAttendanceId() {
+        return attendanceId;
+    }
+
+    public void setAttendanceId(Long attendanceId) {
+        this.attendanceId = attendanceId;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public SchoolClass getSchoolClass() {
+        return schoolClass;
+    }
+
+    public void setSchoolClass(SchoolClass schoolClass) {
+        this.schoolClass = schoolClass;
+    }
+
+    public Date getAttendanceDate() {
+        return attendanceDate;
+    }
+
+    public void setAttendanceDate(Date attendanceDate) {
+        this.attendanceDate = attendanceDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    // 👉 Optional: toString, equals, hashCode (can be added if needed)
 }

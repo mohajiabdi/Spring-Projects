@@ -2,7 +2,7 @@ package mohaji.Kindergarten_System.config;
 
 
 
-import mohaji.Kindergarten_System.service.CustomUserDetailsService;
+//import mohaji.Kindergarten_System.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

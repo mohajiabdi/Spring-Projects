@@ -1,15 +1,9 @@
 package mohaji.Kindergarten_System.entity;
 
-
-
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "student_parents")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class StudentParent {
 
     @Id
@@ -24,4 +18,41 @@ public class StudentParent {
     @ManyToOne
     @JoinColumn(name = "parent_id", nullable = false)
     private Parent parent;
+
+    // Default constructor
+    public StudentParent() {
+    }
+
+    // All-args constructor
+    public StudentParent(Long studentParentId, Student student, Parent parent) {
+        this.studentParentId = studentParentId;
+        this.student = student;
+        this.parent = parent;
+    }
+
+    // Getters and setters
+
+    public Long getStudentParentId() {
+        return studentParentId;
+    }
+
+    public void setStudentParentId(Long studentParentId) {
+        this.studentParentId = studentParentId;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Parent getParent() {
+        return parent;
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
 }

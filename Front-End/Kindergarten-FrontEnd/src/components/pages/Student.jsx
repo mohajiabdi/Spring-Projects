@@ -1,5 +1,6 @@
 // src/pages/Student.jsx
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../AuthContext.jsx";
 import {
   getAllStudents,
   createStudent,
@@ -9,6 +10,8 @@ import {
 import "../styles/student.css";
 
 const Student = () => {
+  const { user } = useAuth(); // Get current logged-in user
+  console.log(user?.role); // Should show "ADMIN" or "TEACHER"
   const [students, setStudents] = useState([]);
   const [form, setForm] = useState({
     firstName: "",
@@ -67,6 +70,7 @@ const Student = () => {
     <div className="student-container">
       <h2 className="student-title">Student Management</h2>
 
+      {/* Show add form for all users */}
       <form className="student-form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -114,7 +118,7 @@ const Student = () => {
               <th>Last Name</th>
               <th>DOB</th>
               <th>Gender</th>
-              <th>Actions</th>
+              {user?.role === "ADMIN" && <th>Actions</th>}
             </tr>
           </thead>
           <tbody>
@@ -124,17 +128,12 @@ const Student = () => {
                 <td>{s.lastName}</td>
                 <td>{s.dateOfBirth}</td>
                 <td>{s.gender}</td>
-                <td>
-                  <button className="edit-btn" onClick={() => handleEdit(s)}>
-                    Edit
-                  </button>
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDelete(s.studentId)}
-                  >
-                    Delete
-                  </button>
-                </td>
+                {user.role === "admin" && (
+                  <td>
+                    <button onClick={() => handleEdit(s.id)}>Edit</button>
+                    <button onClick={() => handleDelete(s.id)}>Delete</button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

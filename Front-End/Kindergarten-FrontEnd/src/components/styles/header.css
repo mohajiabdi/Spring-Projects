@@ -93,3 +93,49 @@ body {
     display: inline-block;
   }
 }
+
+/* Profile styles */
+.user-profile {
+  position: relative;
+  margin-left: 1.5rem;
+  cursor: pointer;
+  color: #222;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.user-profile:hover .user-name {
+  text-decoration: underline;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.profile-dropdown button {
+  background: none;
+  border: none;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+}
+
+.profile-dropdown button:hover {
+  color: var(--primary-color);
+}
+
+/* Responsive fix for profile */
+@media (max-width: 768px) {
+  .user-profile {
+    display: none;
+  }
+}

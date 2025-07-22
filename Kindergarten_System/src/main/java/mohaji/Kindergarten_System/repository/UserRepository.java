@@ -1,7 +1,5 @@
 package mohaji.Kindergarten_System.repository;
 
-
-
 import mohaji.Kindergarten_System.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

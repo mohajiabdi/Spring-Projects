@@ -7,30 +7,80 @@ import Teacher from "./components/pages/Teacher";
 import StudentWithClasses from "./components/pages/StudentWithClasses.jsx";
 import Attendance from "./components/pages/Attendance.jsx";
 import Home from "./components/pages/Home.jsx";
-import "./index.css"; // Assuming you have a global CSS file
+import RegisterUser from "./components/RegisterUser.jsx";
+import LoginForm from "./components/LoginForm.jsx";
+import "./index.css";
 
 function App() {
   return (
     <Router>
-      <div className=" main-content">
-        <Header />
-        <Routes className="main-content">
-          <Route
-            path="/"
-            element={
-              <Home /> // Assuming Home is the main dashboard page
-            }
-          />
+      <Routes>
+        {/* Login and Register - Without Header/Footer */}
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterUser />} />
 
-          <Route path="/pages/students" element={<Student />} />
-          <Route path="/pages/parents" element={<Parents />} />
-          <Route path="/pages/teachers" element={<Teacher />} />
-          <Route path="/pages/classes" element={<StudentWithClasses />} />
-
-          <Route path="/pages/attendance" element={<Attendance />} />
-        </Routes>
-      </div>
-      <Footer />
+        {/* All other routes with Header/Footer layout */}
+        <Route
+          path="/home"
+          element={
+            <>
+              <Header />
+              <Home />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/pages/students"
+          element={
+            <>
+              <Header />
+              <Student />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/pages/parents"
+          element={
+            <>
+              <Header />
+              <Parents />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/pages/teachers"
+          element={
+            <>
+              <Header />
+              <Teacher />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/pages/classes"
+          element={
+            <>
+              <Header />
+              <StudentWithClasses />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/pages/attendance"
+          element={
+            <>
+              <Header />
+              <Attendance />
+              <Footer />
+            </>
+          }
+        />
+      </Routes>
     </Router>
   );
 }
